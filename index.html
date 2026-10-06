@@ -10,13 +10,13 @@
 <style>
 /* Layout: sistema web com menu lateral fixo + área de conteúdo em cards; vira gaveta + barra inferior no celular */
 :root{
-  --bg:#FBF7EE;        /* creme */
+  --bg:#F8F9F6;        /* off-white */
   --surface:#FFFFFF;
-  --sand:#F3ECDD;      /* bege */
-  --sand-2:#EADFC9;
-  --line:#E5DCC8;
-  --ink:#2C3628;       /* verde quase preto */
-  --muted:#6C7262;
+  --sand:#F1F3EE;      /* cinza-esverdeado bem claro */
+  --sand-2:#E2E6DC;
+  --line:#E6E9E2;
+  --ink:#1F2A1D;       /* verde quase preto */
+  --muted:#5E665A;
   --green:#4E7A38;     /* verde natural */
   --green-soft:#E3EDD6;
   --olive:#7A8A3C;
@@ -35,15 +35,15 @@
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#1A1F18;--surface:#232A21;--sand:#2B3328;--sand-2:#343D30;--line:#38422F;--ink:#EEEADF;--muted:#A9AF9D;
-  --green:#8DBA71;--green-soft:#2D3D25;--olive:#B6C26F;--olive-soft:#343A22;--terra:#E68D6A;--terra-soft:#432A20;
-  --orange:#F0AA73;--orange-soft:#45321F;--yellow:#F0CB6B;--yellow-soft:#413820;--on-accent:#16200F;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);color-scheme:dark}}
+  --bg:#111511;--surface:#1D231C;--sand:#283027;--sand-2:#3A4436;--line:#3B4637;--ink:#F6F5EF;--muted:#C3C9B9;
+  --green:#9FD07F;--green-soft:#2C4321;--olive:#C5D27A;--olive-soft:#363D1F;--terra:#F49E7A;--terra-soft:#4A2A1D;
+  --orange:#F6B07A;--orange-soft:#4A331C;--yellow:#F5D06E;--yellow-soft:#463B1A;--on-accent:#10190C;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 28px rgba(0,0,0,.4);color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#1A1F18;--surface:#232A21;--sand:#2B3328;--sand-2:#343D30;--line:#38422F;--ink:#EEEADF;--muted:#A9AF9D;
-  --green:#8DBA71;--green-soft:#2D3D25;--olive:#B6C26F;--olive-soft:#343A22;--terra:#E68D6A;--terra-soft:#432A20;
-  --orange:#F0AA73;--orange-soft:#45321F;--yellow:#F0CB6B;--yellow-soft:#413820;--on-accent:#16200F;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);color-scheme:dark}
+  --bg:#111511;--surface:#1D231C;--sand:#283027;--sand-2:#3A4436;--line:#3B4637;--ink:#F6F5EF;--muted:#C3C9B9;
+  --green:#9FD07F;--green-soft:#2C4321;--olive:#C5D27A;--olive-soft:#363D1F;--terra:#F49E7A;--terra-soft:#4A2A1D;
+  --orange:#F6B07A;--orange-soft:#4A331C;--yellow:#F5D06E;--yellow-soft:#463B1A;--on-accent:#10190C;
+  --shadow:0 1px 2px rgba(0,0,0,.45),0 10px 28px rgba(0,0,0,.4);color-scheme:dark}
 
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -270,15 +270,16 @@ button.row:hover{background:var(--bg)}
 .tabs button{border:0;background:none;padding:8px 16px;border-radius:var(--r-pill);font-weight:700;font-size:.9rem;color:var(--muted);display:inline-flex;gap:6px;align-items:center}
 .tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
 .tabs .count{font-size:.75rem;background:var(--sand-2);border-radius:var(--r-pill);padding:0 7px}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:16px}
 .pcard{display:grid;gap:14px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;transition:transform .15s,box-shadow .15s}
 .pcard:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .pcard .head{display:flex;gap:12px;align-items:flex-start}
 .pcard .head .t{min-width:0;flex:1}
 .pcard strong{display:block;line-height:1.25}
 .pcard small{color:var(--muted);font-size:.84rem}
-.pcard .foot{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.84rem;color:var(--muted)}
-.days{font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--ink)}
+.pcard .mid{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pcard .foot{font-size:.84rem;color:var(--muted)}
+.days{font-family:var(--font-display);font-weight:800;font-size:1.05rem;color:var(--ink);white-space:nowrap}
 .empty{text-align:center;padding:48px 16px;color:var(--muted);display:grid;gap:10px;justify-items:center}
 .empty .food{width:64px;height:64px;font-size:34px}
 
@@ -430,6 +431,7 @@ td .cell .food{width:38px;height:38px;font-size:20px;border-radius:10px}
 }
 @media (max-width:640px){
   body{font-size:14.5px}
+  .topbar .theme-btn{display:none}
   .welcome .actions .btn{flex:1 1 auto}
   .chips.scroll{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;max-width:100%}
   .chips.scroll .chip{flex:none}
@@ -450,6 +452,15 @@ td .cell .food{width:38px;height:38px;font-size:20px;border-radius:10px}
   .row .end .btn{display:none}
   .method-tabs{gap:8px}
 }
+/* Escuro: cards e textos com mais destaque */
+:root[data-theme="dark"] :is(.card,.stat,.pcard,.step,.benefit,.alert-item,.table-wrap,.float-card){box-shadow:var(--shadow)}
+:root[data-theme="dark"] :is(h1,h2,h3,strong,.val,.days,.big){color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) :is(.card,.stat,.pcard,.step,.benefit,.alert-item,.table-wrap,.float-card){box-shadow:var(--shadow)}}
+.theme-btn .moon{display:none}
+:root[data-theme="dark"] .theme-btn .sun{display:none}:root[data-theme="dark"] .theme-btn .moon{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .theme-btn .sun{display:none}:root:not([data-theme="light"]) .theme-btn .moon{display:block}}
+.auth-form{position:relative}
+.auth-form .theme-btn{position:absolute;top:20px;right:20px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
 </style>
 </head>
@@ -510,6 +521,11 @@ const P = {
   sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
   moon:'<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>'
 };
+const themeBtn = () => `<button class="icon-btn theme-btn" data-theme-toggle aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro"><span class="sun">${ic('moon')}</span><span class="moon">${ic('sun')}</span></button>`;
+function isDark(){ const r = document.documentElement; return r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; }
+function setTheme(t){ document.documentElement.dataset.theme = t; try { localStorage.setItem('eatwise-theme', t); } catch(e) {} }
+try { const t = localStorage.getItem('eatwise-theme'); if (t) document.documentElement.dataset.theme = t; } catch(e) {}
+document.addEventListener('click', e => { if (e.target.closest('[data-theme-toggle]')) { setTheme(isDark() ? 'light' : 'dark'); closeDropdowns && closeDropdowns(); toast(isDark() ? 'Tema escuro ativado' : 'Tema claro ativado', isDark() ? 'moon' : 'sun'); } });
 const ic = (n, cls='') => `<svg class="svg ${cls}" viewBox="0 0 24 24" aria-hidden="true">${P[n]||''}</svg>`;
 
 /* ---------- Ilustrações ---------- */
@@ -740,6 +756,7 @@ function pubNav(){
       <a href="#planos" data-scroll="planos">Planos</a>
     </nav>
     <div class="pub-actions">
+      ${themeBtn()}
       <button class="btn btn-ghost" data-go="login">Entrar</button>
       <button class="btn btn-primary" data-go="cadastro">Criar conta grátis</button>
     </div>
@@ -859,7 +876,7 @@ function authArt(quote, who){
 function viewLogin(){
   return `<div class="auth">
     ${authArt('“Parei de abrir a geladeira e achar requeijão estragado que eu nem lembrava que tinha aberto.”', ['CS','Carla Souza, participante do grupo piloto'])}
-    <main class="auth-form">
+    <main class="auth-form">${themeBtn()}
       <form class="auth-box" id="login-form" novalidate>
         <button type="button" class="back-link" data-go="inicio">${ic('left','sm')} Voltar ao início</button>
         <div><h1>Bem-vinda de volta</h1><p class="muted" style="margin-top:6px">Entre para ver o que está perto de vencer na sua geladeira.</p></div>
@@ -881,7 +898,7 @@ function viewLogin(){
 function viewSignup(){
   return `<div class="auth">
     ${authArt('“Registrei a maionese por foto e o app me avisou três dias antes. Simples assim.”', ['RA','Rafael Alves, participante do grupo piloto'])}
-    <main class="auth-form">
+    <main class="auth-form">${themeBtn()}
       <form class="auth-box" id="signup-form" novalidate>
         <button type="button" class="back-link" data-go="inicio">${ic('left','sm')} Voltar ao início</button>
         <div><h1>Crie sua conta</h1><p class="muted" style="margin-top:6px">Leva menos de um minuto. Depois é só registrar o primeiro produto aberto.</p></div>
@@ -969,6 +986,7 @@ function shell(){
         <button class="icon-btn menu-toggle" id="menu-toggle" aria-label="Abrir menu">${ic('menu')}</button>
         <div class="search input-icon">${ic('search','sm')}<input class="input" id="global-search" placeholder="Buscar na geladeira: requeijão, molho..." aria-label="Buscar produtos"></div>
         <div class="top-right">
+          ${themeBtn()}
           <button class="btn btn-primary btn-sm" data-go="adicionar" id="top-add">${ic('plus','sm')} <span>Registrar</span></button>
           <div class="dd-wrap">
             <button class="icon-btn" id="notif-btn" aria-label="Notificações" aria-expanded="false">${ic('bell')}<span class="dot" id="notif-dot"></span></button>
@@ -980,7 +998,7 @@ function shell(){
               <a href="#perfil" data-go="perfil">${ic('user','sm')} Meu perfil</a>
               <a href="#perfil-2" data-go="perfil-2">${ic('sliders','sm')} Notificações</a>
               <a href="#perfil-3" data-go="perfil-3">${ic('users','sm')} Minha casa</a>
-              <button class="dd-item" id="theme-btn">${ic('moon','sm')} Alternar tema</button>
+              <button class="dd-item" data-theme-toggle>${ic('moon','sm')} Alternar tema claro/escuro</button>
               <hr style="border:0;border-top:1px solid var(--line);margin:6px 0">
               <button class="dd-item" id="logout-btn">${ic('logout','sm')} Sair</button>
             </div>
@@ -1009,12 +1027,6 @@ function bindShell(){
     <div class="m-ico i-terra">${ic('logout','lg')}</div><h2>Sair da conta?</h2>
     <p class="muted">Você continuará recebendo alertas no celular enquanto o aplicativo estiver instalado.</p>
     <div class="modal-actions"><button class="btn btn-ghost" data-close>Cancelar</button><button class="btn btn-terra" data-go="login">Sair</button></div>`); };
-  $('#theme-btn').onclick = () => {
-    const r = document.documentElement;
-    const dark = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-    r.dataset.theme = dark ? 'light' : 'dark';
-    closeDropdowns();
-  };
   $('#global-search').addEventListener('keydown', e => {
     if (e.key === 'Enter') { despState.q = e.target.value; despState.tab = 'ativos'; go('despensa'); }
   });
@@ -1061,12 +1073,13 @@ function pcard(p){
   const sub = p.estado
     ? `${p.estado === 'consumido' ? 'Consumido' : 'Descartado'} em ${p.quando}`
     : `Aberto em ${fmt(p.aberto)} · até ${fmt(p.limite)}`;
+  const days = p.restam < 0 ? 'vencido' : p.restam === 0 ? 'hoje' : p.restam + (p.restam===1?' dia':' dias');
   return `<button class="pcard" data-go="produto-${p.id}">
     <div class="head"><span class="food ${p.cat.cls}">${p.emoji}</span>
-      <div class="t"><strong>${esc(p.nome)}</strong><small>${esc(p.marca)}</small></div>
-      <span class="pill ${p.st.cls}">${p.st.label}</span></div>
+      <div class="t"><strong>${esc(p.nome)}</strong><small>${esc(p.marca)}</small></div></div>
+    <div class="mid"><span class="pill ${p.st.cls}">${p.st.label}</span>${p.estado ? `<span class="tag">${p.cat.nome.split(' ')[0]}</span>` : `<span class="days num">${days}</span>`}</div>
     ${p.estado ? '' : `<div class="bar ${p.st.bar}"><i style="width:${Math.round(p.frac*100)}%"></i></div>`}
-    <div class="foot"><span>${sub}</span>${p.estado ? `<span class="tag">${p.cat.nome.split(' ')[0]}</span>` : `<span class="days num">${p.restam < 0 ? 'vencido' : p.restam + (p.restam===1?' dia':' dias')}</span>`}</div>
+    <div class="foot"><span>${sub}</span></div>
   </button>`;
 }
 function row(p, withAction){
@@ -1620,6 +1633,7 @@ function viewPerfil(){
     <div>
       ${[['Alertas de vencimento','Aviso antes da data-limite de cada produto aberto',true],['Resumo semanal','Domingo às 10:00, com o que vence na semana',true],['Notificações por e-mail','Uma cópia dos alertas no seu e-mail',false],['Avisos de produtos vencidos','Lembrete diário até você dar baixa no item',true],['Dicas de conservação','No máximo duas por semana',false]].map(([t,d,on],i) => `
       <div class="setting"><div><strong>${t}</strong><p>${d}</p></div><label class="switch"><input type="checkbox" id="sw-${i}" ${on?'checked':''} aria-label="${t}"><span></span></label></div>`).join('')}
+      <div class="setting"><div><strong>Tema</strong><p>Claro (off-white) ou escuro, com mais contraste</p></div><div class="tabs" id="theme-pick"><button data-t="light">Claro</button><button data-t="dark">Escuro</button></div></div>
       <div class="setting"><div><strong>Antecedência padrão</strong><p>Quantos dias antes do vencimento avisar</p></div><select class="select" id="ant" style="width:auto"><option>1 dia</option><option selected>2 dias</option><option>3 dias</option></select></div>
       <div class="setting"><div><strong>Horário dos alertas</strong><p>Escolha um momento em que você costuma estar em casa</p></div><input class="input" type="time" id="hora" value="08:00" style="width:auto"></div>
     </div>`;
@@ -1660,6 +1674,7 @@ function bindPerfil(){
     $('#pf-form').addEventListener('submit', e => { e.preventDefault(); toast('Perfil atualizado com sucesso'); });
   }
   $$('.switch input').forEach(s => s.onchange = () => toast(`${s.getAttribute('aria-label')} ${s.checked ? 'ativado' : 'desativado'}`, 'bell'));
+  $$('#theme-pick button').forEach(b => { b.setAttribute('aria-selected', (b.dataset.t === 'dark') === isDark()); b.onclick = () => { setTheme(b.dataset.t); $$('#theme-pick button').forEach(x => x.setAttribute('aria-selected', x === b)); toast(b.dataset.t === 'dark' ? 'Tema escuro ativado' : 'Tema claro ativado', b.dataset.t === 'dark' ? 'moon' : 'sun'); }; });
   $('#ant') && ($('#ant').onchange = e => toast(`Antecedência padrão: ${e.target.value}`, 'bell'));
   $('#hora') && ($('#hora').onchange = e => toast(`Alertas passam a chegar às ${e.target.value}`, 'clock'));
   $('#invite') && ($('#invite').onclick = () => modal(`
