@@ -11,6 +11,38 @@ depois que a embalagem é aberta.
 
 Abra o arquivo `index.html` em qualquer navegador (duplo clique). Não precisa instalar nada.
 
+## App para celular
+
+A pasta `app/` tem a versão para celular do EatWise: as mesmas telas, dados e visual do protótipo web, com cara de aplicativo.
+
+- Tela de abertura e apresentação inicial em 3 telas (dá para deslizar com o dedo)
+- Barra de navegação inferior com o botão **+** para registrar produtos
+- Registro por foto com tela de câmera (visor, botão de disparo, galeria e flash simulados)
+- Instalável na tela inicial (PWA): abre em tela cheia, com ícone próprio, e funciona sem internet depois do primeiro acesso
+
+No computador, o app aparece dentro de uma moldura de celular, ideal para apresentar.
+
+### Como instalar no celular
+
+O app precisa estar publicado em um endereço `https`. O jeito mais simples é o GitHub Pages:
+
+1. No GitHub, abra **Settings → Pages**.
+2. Em **Branch**, escolha a branch deste projeto e a pasta `/ (root)`, e clique em **Save**.
+3. Depois de alguns minutos, o app fica em `https://<usuário>.github.io/PrototipoTCC/app/`.
+4. Abra esse endereço no celular:
+   - **Android (Chrome):** menu ⋮ → **Instalar app** ou **Adicionar à tela inicial**.
+   - **iPhone (Safari):** botão Compartilhar → **Adicionar à Tela de Início**.
+
+Para gerar um arquivo **APK** (Android), cole o endereço do GitHub Pages em [pwabuilder.com](https://www.pwabuilder.com) e baixe o pacote Android.
+
+### Manter as duas versões iguais
+
+O `app/index.html` é gerado a partir do `index.html`. Depois de alterar o protótipo web, rode:
+
+```
+python3 tools/build_app.py
+```
+
 ## Telas
 
 | Tela | O que mostra |
